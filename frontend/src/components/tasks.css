@@ -1,0 +1,84 @@
+/* src/components/tasks.css */
+
+/* Form container spacing */
+.task-form {
+    margin-bottom: 1rem;
+  }
+  
+  /* Input field styling */
+  .task-input {
+    padding: 0.5rem;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+  }
+  
+  /* Add button styling */
+  .task-button {
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    background-color: var(--primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .task-button:hover {
+    background-color: var(--secondary);
+  }
+  
+  /* Task list container */
+  .task-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* Individual task item */
+  .task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--secondary);
+    color: var(--light-text);
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.3rem;
+    transition: opacity 0.2s ease;
+  }
+  .task-item.completed {
+    opacity: 0.5;
+  }
+  
+  /* Delete button inside task */
+  .task-delete {
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.2s ease;
+  }
+  .task-delete:hover {
+    color: #ffffff;
+  }
+
+  .task-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  .task-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+  }
+  .task-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .task-exit-active {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 300ms, transform 300ms;
+  }
+  
