@@ -1,11 +1,10 @@
-/* src/components/tasks.css */
 
-/* Form container spacing */
+
 .task-form {
     margin-bottom: 1rem;
   }
   
-  /* Input field styling */
+ 
   .task-input {
     padding: 0.5rem;
     width: 70%;
@@ -13,7 +12,7 @@
     border-radius: 0.3rem;
   }
   
-  /* Add button styling */
+  
   .task-button {
     padding: 0.5rem 1rem;
     margin-left: 0.5rem;
@@ -28,13 +27,15 @@
     background-color: var(--secondary);
   }
   
-  /* Task list container */
+  
   .task-list {
     list-style: none;
     padding: 0;
+    margin: 0 auto;     
+    max-width: 100%;   
   }
   
-  /* Individual task item */
+  
   .task-item {
     display: flex;
     justify-content: space-between;
@@ -50,7 +51,7 @@
     opacity: 0.5;
   }
   
-  /* Delete button inside task */
+  
   .task-delete {
     background: transparent;
     border: none;
@@ -80,5 +81,12 @@
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 300ms, transform 300ms;
+  }
+
+  .task-desc {
+    margin: 0.25rem 0 0 0;
+    font-size: 0.9rem;
+    color: #ddd;
+    line-height: 1.2;
   }
   

@@ -1,22 +1,21 @@
 // src/pages/LoginPage.js
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import './LoginPage.css'; 
+import client from '../api/client';
+import { AuthContext } from '../context/AuthContext';
+import './LoginPage.css';
 
 export default function LoginPage() {
+  const { login } = useContext(AuthContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/auth/login', { username, password });
-      localStorage.setItem('token', res.data.token);
-      
-      axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+      await login(username, password);      
       toast.success('Logged in!');
       navigate('/tasks');
     } catch (err) {

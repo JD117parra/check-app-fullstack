@@ -1,27 +1,32 @@
 // src/pages/TasksPage.js
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { AuthContext } from '../context/AuthContext';
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
 import { ToastContainer } from 'react-toastify';
 
-export default function TasksPage({ tasks, addTask, toggleTask, deleteTask }) {
+export default function TasksPage({ tasks, addTask, toggleTask, deleteTask, updateTask }) {
   const navigate = useNavigate();
+  const { user, logout } = useContext(AuthContext);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    delete axios.defaults.headers.common['Authorization'];
+    logout();               
     navigate('/login');
   };
 
   return (
     <div className="app-container">
+      {user && (
+       <p className="welcome">
+       Hola, <strong>{user.username}</strong> 
+       </p>
+      )}
       <button
         onClick={handleLogout}
-        style={{ position: 'absolute', top: 16, right: 16 }}
+        className="logout-button"
       >
-        Logout
+          Logout
       </button>
 
       <h1 className="app-title">My To-Do List</h1>
@@ -30,12 +35,7 @@ export default function TasksPage({ tasks, addTask, toggleTask, deleteTask }) {
         tasks={tasks}
         toggleTask={toggleTask}
         deleteTask={deleteTask}
-      />
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar
-        pauseOnHover={false}
+        updateTask={updateTask}
       />
     </div>
   );

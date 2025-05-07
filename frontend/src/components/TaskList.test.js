@@ -19,15 +19,15 @@ test('TaskList renders tasks and handles toggle/delete', () => {
     />
   );
 
-  // Debe mostrar ambos títulos
+  
   expect(screen.getByText('First')).toBeInTheDocument();
   expect(screen.getByText('Second')).toBeInTheDocument();
 
-  // Al clicar sobre el texto, llama a toggleTask con el id correspondiente
+  
   fireEvent.click(screen.getByText('First'));
   expect(mockToggle).toHaveBeenCalledWith('1');
 
-  // Al clicar el botón de borrar, llama a deleteTask
+ 
   const deleteButtons = screen.getAllByRole('button', { name: /🗑/ });
   fireEvent.click(deleteButtons[1]);
   expect(mockDelete).toHaveBeenCalledWith('2');
