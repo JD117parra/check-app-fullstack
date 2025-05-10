@@ -3,39 +3,34 @@ import { AuthContext } from '../context/AuthContext';
 import { toast } from 'react-toastify'
 import client from '../api/client';
 
-/**
- * Hook para gestionar tareas y reaccionar al cambio de usuario (token)
- */
+
 export default function useTasks() {
   const { token } = useContext(AuthContext);
   const [tasks, setTasks] = useState([]);
 
-  // Función que trae las tareas del backend
   const fetchTasks = async () => {
     try {
       const { data } = await client.get('/tasks');
+      console.log('🔍 fetched tasks:', data);
       setTasks(data);
     } catch (err) {
       console.error('Error fetching tasks:', err);
     }
   };
 
-  // Cada vez que cambie el token (login/logout), recarga o limpia
   useEffect(() => {
     if (!token) {
-      // Si no hay token, limpiamos las tareas
       setTasks([]);
       return;
     }
-    // Si hay token, traemos las tareas del usuario actual
     fetchTasks();
   }, [token]);
 
-  const addTask = async (title, description) => {
+  const addTask = async (title, description, priority = 'medium', dueDate) => {
     try {
-      const { data } = await client.post('/tasks', { title, description });
-      setTasks(prev => [data, ...prev]);
-      toast.success('✅ Tarea creada');
+      const { data } = await client.post('/tasks', { title, description, priority, dueDate });
+      setTasks(prev => [data, ...prev]);  
+      toast.success('✅ Tarea creada');  
     } catch (err) {
       console.error('Error creating task:', err);
       toast.error('❌ No se pudo crear la tarea');
@@ -44,7 +39,15 @@ export default function useTasks() {
   
   const toggleTask = async (id, completed) => {
     try {
-      const { data } = await client.put(`/tasks/${id}`, { completed });
+      const tareaActual = tasks.find(t => t._id === id);
+      const payload = {
+        title:       tareaActual.title,
+        description: tareaActual.description,
+        priority:    tareaActual.priority,
+        dueDate:     tareaActual.dueDate,
+        completed    
+      };
+      const { data } = await client.put(`/tasks/${id}`, payload);
       setTasks(prev => prev.map(t => (t._id === id ? data : t)));
       toast.info(
         data.completed
@@ -52,11 +55,10 @@ export default function useTasks() {
           : '🔄 Tarea marcada como pendiente'
       );
     } catch (err) {
-      console.error(err);
+      console.error('Error en toggleTask:', err.response?.data || err);
       toast.error('❌ Error al actualizar tarea');
     }
   };
-  
   const deleteTask = async id => {
     try {
       await client.delete(`/tasks/${id}`);

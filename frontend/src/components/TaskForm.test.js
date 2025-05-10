@@ -1,21 +1,21 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import TaskForm from './TaskForm';
 
-test('TaskForm calls addTask on submit with input value', () => {
-  const mockAdd = jest.fn();
-  render(<TaskForm addTask={mockAdd} />);
+test('TaskForm llama addTask y resetea inputs', () => {
+  const addTask = jest.fn();
+  render(<TaskForm addTask={addTask} />);
 
- 
-  const input = screen.getByPlaceholderText(/new task/i);
-  const button = screen.getByRole('button', { name: /add/i });
+  fireEvent.change(screen.getByPlaceholderText(/New task/i), {
+    target: { value: 'Título' }
+  });
+  fireEvent.change(screen.getByPlaceholderText(/Details/i), {
+    target: { value: 'Descripción' }
+  });
+  fireEvent.click(screen.getByText(/Add/i));
 
- 
-  fireEvent.change(input, { target: { value: 'Test Task' } });
-  fireEvent.click(button);
-
- 
-  expect(mockAdd).toHaveBeenCalledWith('Test Task');
-  
-  expect(input).toHaveValue('');
+  expect(addTask).toHaveBeenCalledWith('Título','Descripción','medium','');
+  expect(screen.getByPlaceholderText(/New task/i)).toHaveValue('');
+  expect(screen.getByPlaceholderText(/Details/i)).toHaveValue('');
 });

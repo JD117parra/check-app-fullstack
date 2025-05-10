@@ -1,4 +1,3 @@
-// backend/routes/tasks.js
 const express = require('express');
 const Task    = require('../models/Task');
 const auth    = require('../middleware/auth');
@@ -21,11 +20,13 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const { title, description } = req.body;  
+    const { title, description, priority, dueDate } = req.body;  
     const task = await Task.create({
       userId: req.userId,
       title,
       description,  
+      priority,     
+      dueDate, 
       completed: false
     });
     res.status(201).json(task);
@@ -37,27 +38,22 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const { title, description, completed } = req.body;
-    
+    const { title, description, completed, priority, dueDate } = req.body;
     const updates = {};
-    if (title   !== undefined) updates.title     = title;
+    if (title       !== undefined) updates.title       = title;
     if (description !== undefined) updates.description = description;
-    if (completed !== undefined) updates.completed = completed;
+    if (completed   !== undefined) updates.completed   = completed;
+    if (priority    !== undefined) updates.priority    = priority;
+    if (dueDate     !== undefined) updates.dueDate     = dueDate;
 
-   
     const task = await Task.findOneAndUpdate(
       { _id: req.params.id, userId: req.userId },
       updates,
-      { new: true }  
+      { new: true }
     );
-
-    if (!task) {
-      return res.status(404).json({ error: 'Task not found' });
-    }
-    
+    if (!task) return res.status(404).json({ error: 'Task not found' });
     res.json(task);
   } catch (err) {
-    console.error('Error en PUT /api/tasks/:id', err);
     res.status(400).json({ error: err.message });
   }
 });

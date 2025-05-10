@@ -18,33 +18,16 @@ export default function App() {
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar
-        pauseOnHover={false}
-      />
+      <ToastContainer position="top-right" autoClose={2000} hideProgressBar pauseOnHover={false}/>
 
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
-        <Route
-          path="/tasks"
-          element={
-            token ? (
-              <TasksPage
-                tasks={tasks}
-                addTask={addTask}
-                toggleTask={toggleTask}
-                deleteTask={deleteTask}
-                updateTask={updateTask}
-              />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
+        <Route path="/tasks" element={ token ? (
+              <TasksPage tasks={tasks} addTask={addTask} toggleTask={toggleTask} deleteTask={deleteTask}
+                updateTask={updateTask}/>) 
+                : ( <Navigate to="/login" replace />) }/>
 
         <Route path="/" element={<Navigate to="/tasks" replace />} />
       </Routes>

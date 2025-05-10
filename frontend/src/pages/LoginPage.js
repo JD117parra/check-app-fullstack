@@ -1,10 +1,11 @@
-// src/pages/LoginPage.js
 import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import client from '../api/client';
 import { AuthContext } from '../context/AuthContext';
 import './LoginPage.css';
+
+import logo from '../ilustracion2.svg';
 
 export default function LoginPage() {
   const { login } = useContext(AuthContext);
@@ -21,6 +22,11 @@ export default function LoginPage() {
     } catch (err) {
       console.error(err);
       toast.error(err.response?.data?.error || 'Login failed');
+      setUsername('');
+      setPassword('');
+      document
+      .querySelector('.login-form input[type="text"]')
+      .focus();
     }
   };
 

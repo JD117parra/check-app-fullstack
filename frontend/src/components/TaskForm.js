@@ -4,13 +4,22 @@ import './tasks.css';
 export default function TaskForm({ addTask }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [priority, setPriority] = useState('medium');
+  const [dueDate, setDueDate] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
     if (!title.trim()) return;
-    addTask(title.trim(), description.trim());         
+    addTask(
+      title.trim(),
+      description.trim(),
+      priority,
+      dueDate              
+    );
     setTitle('');
-    setDescription('');                                
+    setDescription('');
+    setPriority('medium');
+    setDueDate('');       
   };
 
   return (
@@ -27,8 +36,24 @@ export default function TaskForm({ addTask }) {
         className="task-input"
         value={description}
         onChange={e => setDescription(e.target.value)}
-        placeholder="Detalles"
+        placeholder="Details..."
       />
+
+      <select
+        className="task-input"
+        value={priority}
+        onChange={e => setPriority(e.target.value)}>
+        <option value="low">low priority</option>
+        <option value="medium">medium priority</option>
+        <option value="high">high priority</option>
+      </select>
+
+      <input
+     type="date"
+     className="task-input"
+     value={dueDate}
+     onChange={e => setDueDate(e.target.value)}
+     />
 
       <button type="submit" className="task-button">
         Add
