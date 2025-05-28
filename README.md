@@ -12,7 +12,7 @@
 ![Desktop View](./assets/tasks-desktop.png)
 
 ### Mobile Responsive
-![Mobile View](../assets/tasks-phone.png)
+![Mobile View](./assets/tasks-phone.png)
 
 ### Login Management
 ![Task Management](./assets/login.png)
