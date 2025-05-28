@@ -8,30 +8,14 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-Database-green?logo=mongodb)](https://mongodb.com/)
 [![Testing](https://img.shields.io/badge/Tests-Jest-red?logo=jest)](https://jestjs.io/)
 
-
-
-## 📸 Preview
-
-<p align="center">
-  <img src="./assets/login.png" alt="Login screen" width="450" />
-</p>
-
-<p align="center">
-  <img src="./assets/tasks-phone.png" alt="Task list on mobile" width="600" />
-</p>
-
-<p align="center">
-  <img src="./assets/tasks-desktop.png" alt="Task list on desktop" width="600" />
-</p>
-
 ### Desktop View
 ![Desktop View](./assets/tasks-desktop.png)
 
 ### Mobile Responsive
-![Mobile View](./screenshots/mobile-view.png)
+![Mobile View](../assets/tasks-phone.png)
 
-### Task Management
-![Task Management](./screenshots/task-features.png)
+### Login Management
+![Task Management](./assets/login.png)
 
 ## ✨ Key Features
 
