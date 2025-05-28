@@ -451,7 +451,6 @@ You are free to use, modify, and distribute this project.
 - 💼 **LinkedIn**: [juan-parra-2358b428b](https://www.linkedin.com/in/juan-parra-2358b428b)
 - 🐱 **GitHub**: [@JD117parra](https://github.com/JD117parra)
 - 📧 **Email**: JhonParra117@outlook.com
-- 🌐 **Portfolio**: [Your Portfolio URL](#)
 
 *Passionate about productivity and user experience, focused on creating practical solutions that make daily tasks easier.*
 
