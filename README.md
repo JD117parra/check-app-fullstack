@@ -8,10 +8,10 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-Database-green?logo=mongodb)](https://mongodb.com/)
 [![Testing](https://img.shields.io/badge/Tests-Jest-red?logo=jest)](https://jestjs.io/)
 
-### Desktop View
+### Mobile View
 ![Desktop View](./assets/tasks-desktop.png)
 
-### Mobile Responsive
+### Desktop Responsive
 ![Mobile View](./assets/tasks-phone.png)
 
 ### Login Management
